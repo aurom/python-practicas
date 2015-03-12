@@ -1,5 +1,4 @@
 
-
 def llena_estados():
 	"""Llena la lista de estados de la maquina de turing"""
 	q = []
@@ -52,19 +51,22 @@ def machine(N, M, estados, cinta, rules, est_inicial, inicio_cinta):
 		numeros = input("Cuantos 1's vas a meter: ")
 		llena_cinta(numeros, cinta) # llena la cinta con unos
 		res_deseado = input("Cuantos 1's crees que habra: ")
-		estado_prev = est_inicial #estado en el que estas parado
+		estado_prev = est_inicial #auxiliar para dar los saltos entre estados
 		blanco = inicio_cinta #blanco de la cina
 		iteracion = 0
-		while(iteracion <= 10000 and len(rules) != 0 ):
-			rule = rules[(str(estado_prev) , str(cinta[blanco]))] #da la regla para el estado
-			del rules[(str(estado_prev), str(cinta[blanco]))] #borra la regla usada
-			cadena_prev = rule[0] #cadena antes de usar la maquina
-			estado_sig = int(rule[1]) #estado a donde vas con la regla usada
-			cadena_sig = rule[2] #cadena despues de usar la maquina
+		reglas = rules
+		while(iteracion <= 10000 and len(reglas) != 0 ):
+			if ((str(estado_prev), str(cinta[blanco])) in reglas):
+				break
+			rule = reglas[(str(estado_prev) , str(cinta[blanco]))] #da la regla para el estado
+			del reglas[(str(estado_prev), str(cinta[blanco]))] 
+			cadena_prev = rule[0] #cadena leida
+			estado_sig = int(rule[1]) #agarra el estado a donde se va a ir.
+			cadena_sig = rule[2] #cadena a leer
 			giro = rule[3]  #giro de la cinta
 			estado_prev = estado_sig # cambia de estado
 			cinta[blanco] = int(cadena_sig) #cambia el numero en la cinta por la cadena leida
-			if (giro == "R"): blanco +=1 
+			if (giro == "R"): blanco +=1
 			if(giro == "L"): blanco -= 1
 			iteracion += 1
 			if(out_of_range(blanco, cinta)):
