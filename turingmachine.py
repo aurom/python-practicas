@@ -1,27 +1,35 @@
 
 def llena_estados():
-	"""Llena la lista de estados de la maquina de turing"""
+	"""
+	Llena la lista de estados de la maquina de turing
+	"""
 	q = []
 	for i in range(0,1001):
 		q.append(i)
 	return q
 
 def ini_cinta():
-	"""Inicializa la cinta con ceros"""
+	"""
+	Inicializa la cinta con ceros
+	"""
 	c = []
 	for i in range(0,1001):
 		c.append(0)
 	return c
 
 def out_of_range(b, cinta):
-	"""verifica si el indice b esta fuera del rango de la cinta
-	   b   blanco de la cinta
-	   cinta  cinta con la que se verificara"""
+	"""
+	Verifica si el indice b esta fuera del rango de la cinta
+	b   blanco de la cinta
+	cinta  cinta con la que se verificara
+	"""
 	return b <0 or len(cinta) <= b
 
 def fill_rules(N):
-	"""Genera el diccionario con las reglas establecidas
-	   N    numero de reglas a establecer"""
+	"""
+	Genera el diccionario con las reglas establecidas
+	N    numero de reglas a establecer
+	"""
 	diccionario = dict()
 	for x in range(N):
 		cadena = raw_input("Dame la regla: ")
@@ -30,21 +38,25 @@ def fill_rules(N):
 	return diccionario
 
 def llena_cinta(unos, cinta):
-	"""Llena la cinta con los unos establecidos
-	   unos   numero de unos a poner
-	   cinta  cinta a llenar"""
+	"""
+	Llena la cinta con los unos establecidos
+	unos   numero de unos a poner
+	cinta  cinta a llenar
+	"""
 	for y in range(0,unos):
 		cinta[y] = 1
 
 def machine(N, M, estados, cinta, rules, est_inicial, inicio_cinta):
-	"""Maquina de turing
-	   N   numero de reglas
-	   M   numero de pruebas
-	   estados   conjunto de estados
-	   cinta     cinta de la maquina
-	   rules     diccionario con las reglas almacenadas
-	   est_inicial   estado inicial
-	   inicio_cinta  posicion inicial de la cinta"""
+	"""
+	Maquina de turing
+	N   numero de reglas
+	M   numero de pruebas
+	estados   conjunto de estados
+	cinta     cinta de la maquina
+	rules     diccionario con las reglas almacenadas
+	est_inicial   estado inicial
+	inicio_cinta  posicion inicial de la cinta
+	"""
 	if (N == 0 and M == 0):
 		return
 	for x in range(M):
